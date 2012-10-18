@@ -1,8 +1,12 @@
+CFLAGS ?= -g -O2
+
+all: test-signals-genmarshal test-signals-generic
+
 test-signals-genmarshal: test-signals.c test-marshal.h test-marshal.c Makefile
-	gcc -Wall `pkg-config --cflags --libs gobject-2.0` -o $@ test-marshal.c test-signals.c
+	cc $(CFLAGS) -Wall `pkg-config --cflags --libs gobject-2.0` -o $@ test-marshal.c test-signals.c
 
 test-signals-generic: test-signals.c test-marshal.h test-marshal.c Makefile
-	gcc -DUSE_GENERIC_MARSHALLER=1 -Wall `pkg-config --cflags --libs gobject-2.0` -o $@ test-marshal.c test-signals.c
+	cc $(CFLAGS) -DUSE_GENERIC_MARSHALLER=1 -Wall `pkg-config --cflags --libs gobject-2.0` -o $@ test-marshal.c test-signals.c
 
 
 test-marshal.h: test-marshal.list Makefile
