@@ -105,7 +105,11 @@ test_class_init (TestClass *klass)
                 G_SIGNAL_RUN_LAST,
                 0,
                 NULL, NULL,
+#ifndef USE_GENERIC_MARSHALLER
                 _test_marshal_VOID__CHAR_UCHAR_INT_LONG_POINTER_DOUBLE_FLOAT,
+#else
+		NULL,
+#endif
                 G_TYPE_NONE,
                 7,
                 G_TYPE_CHAR, G_TYPE_UCHAR, G_TYPE_INT, G_TYPE_LONG, G_TYPE_POINTER, G_TYPE_DOUBLE, G_TYPE_FLOAT);
@@ -114,7 +118,11 @@ test_class_init (TestClass *klass)
                 G_SIGNAL_RUN_LAST,
                 0,
                 NULL, NULL,
+#ifndef USE_GENERIC_MARSHALLER
                 _test_marshal_VOID__INT_ENUM_INT_ENUM_INT,
+#else
+		NULL,
+#endif
                 G_TYPE_NONE,
                 5,
                 G_TYPE_INT, test_enum_get_type(), G_TYPE_INT, test_unsigned_enum_get_type (), G_TYPE_INT);
@@ -123,7 +131,11 @@ test_class_init (TestClass *klass)
                 G_SIGNAL_RUN_LAST,
                 0,
                 NULL, NULL,
+#ifndef USE_GENERIC_MARSHALLER
                 _test_marshal_ENUM__VOID,
+#else
+		NULL,
+#endif
                 test_enum_get_type(),
                 0);
   g_signal_new ("generic-marshaller-enum-return-unsigned",
@@ -131,7 +143,11 @@ test_class_init (TestClass *klass)
                 G_SIGNAL_RUN_LAST,
                 0,
                 NULL, NULL,
+#ifndef USE_GENERIC_MARSHALLER
                 _test_marshal_ENUM__VOID,
+#else
+		NULL,
+#endif
                 test_unsigned_enum_get_type(),
                 0);
 }
